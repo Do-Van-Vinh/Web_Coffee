@@ -1,0 +1,291 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.shop {
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+.left_shop{
+    position: sticky;
+    top: 80px; 
+    width: 20%;
+    background-color: var(--color-background);
+    padding: 20px;
+}
+
+/* Bộ lọc */
+.filterbar {
+    background-color: #f8f8f8;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+/* Tiêu đề phân loại */
+.filterbar p {
+    font-weight: bold;
+    margin-bottom: 12px;
+    font-size: 1.1em;
+    color: #333;
+}
+
+/* Label cho mỗi radio */
+.filterbar label {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #444;
+    user-select: none; /* Không cho chọn chữ khi bấm */
+}
+
+/* Tăng kích thước radio để dễ bấm */
+.filterbar input[type="radio"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+    vertical-align: middle;
+}
+
+/* Nút lọc */
+.filterbar button[type="submit"] {
+    margin-top: 10px;
+    padding: 8px 18px;
+    background-color: var(--color-info);
+    opacity: 0.8;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+}
+
+/* Hover nút lọc */
+.filterbar button[type="submit"]:hover {
+    opacity: 1;
+}
+
+.left_shop a {
+    padding: 8px 14px;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    display: inline-block;
+    background-color: var(--color-success);
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.left_shop a:hover {
+    opacity: 1;
+}
+
+.right_shop{
+    height: auto;
+    width: 80%;
+    background-color: var(--color-background);
+    padding: 20px;
+}
+
+/* Giao diện thanh tìm kiếm */
+.searchbar {
+    padding: 20px;
+    background-color: var(--color-background);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.searchbar form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.searchbar input[type="text"] {
+    flex: 1;
+    padding: 10px 14px;
+    font-size: 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.searchbar input[type="text"]:focus {
+    border-color: var(--color-border);
+    box-shadow: 0 0 5px rgba(141, 110, 99, 0.3);
+}
+
+.searchbar button {
+    padding: 10px 20px;
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.searchbar button:hover {
+    transform: scale(1.1);
+}
+
+/* Thiết lập cho mỗi card sản phẩm */
+.right_shop .product_list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+    padding: 10px 0;
+}
+
+/* Card sản phẩm */
+.product_card {
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    text-decoration: none;
+}
+
+.product_card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+}
+
+/* Ảnh sản phẩm */
+.product_card .img_product {
+    width: 220px;
+    height: 180px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.product_card .img_product {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.product_card a {
+    text-decoration: none;
+}
+
+/* Tên sản phẩm */
+.product_card h3 {
+    font-size: 0.8rem;
+    color: var(--color-accent);
+    margin: 0px 4px;
+    text-align: center;
+}
+
+/* Giá sản phẩm */
+.product_card p {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-right: 30px;
+    font-size: 1rem;
+    color: var(--color-success);
+    font-weight: bold;
+    margin-top: auto;
+}
+
+.product_card .cart-btn {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    cursor: pointer;
+}
+
+.product_card button {
+    background: none;
+    border: none;
+}
+
+.product_card .cart-btn img {
+    width: 30px;
+    height: 30px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product_card:hover .cart-btn img {
+    opacity: 1;
+}
+
+.cart-btn img:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/*Chức năng sửa và xoá sản phẩm*/
+.product_edit {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.delete button {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.delete, .edit {
+    padding: 8px 14px;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.delete {
+    background-color: var(--color-danger);
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.delete:hover {
+    opacity: 1;
+}
+
+.edit {
+    background-color: var(--color-info);
+    color: #fff;
+    opacity: 0.8;
+}
+
+.edit:hover {
+    opacity: 1;
+}

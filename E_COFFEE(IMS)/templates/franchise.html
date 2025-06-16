@@ -1,0 +1,22 @@
+<!-- templates/franchise.html -->
+{% extends 'base.html' %}
+
+{% block title %}Nhượng quyền | E-COFFEE{% endblock %}
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/franchise.css') }}">
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="slider">
+        <figure>
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/bg-4.jpg') }}" alt="Slide 4">
+            </div>
+            <div class="slide">
+                <img src="{{ url_for('static', filename='images/bg-5.jpg') }}" alt="Slide 5">
+            </div>
+        </figure>
+    </div>
+</section> 
+{% endblock %}

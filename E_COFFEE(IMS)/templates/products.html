@@ -1,0 +1,35 @@
+<!-- templates/products.html -->
+{% extends 'base.html' %}
+
+{% block title %}{{ action }} Sản phẩm | E-COFFEE{% endblock %}
+
+{% block content %}
+<h1>{{ action }} sản phẩm</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <label for="name">Tên sản phẩm:</label><br>
+    <input type="text" name="name" placeholder="Tên sản phẩm" value="{{ product.name if product else '' }}" required><br>
+
+    <label for="price">Giá:</label><br>
+    <input type="text" name="price" placeholder="Giá" value="{{ product.price if product else '' }}" required><br>
+
+    <label for="description">Mô tả:</label><br>
+    <input type="text" name="description" placeholder="Mô tả" value="{{ product.description if product else '' }}" required><br>
+
+    <label for="category">Phân loại:</label><br>
+    <select name="category_id" required>
+    {% for c in categories %}
+        <option value="{{ c.id }}" {% if product and product.category_id == c.id %}selected{% endif %}>
+        {{ c.name }}
+        </option>
+    {% endfor %}
+    </select><br>
+
+    <label for="image">Chọn hình ảnh:</label><br>
+    <input type="file" name="image"  value="{{ product.image if product else '' }}" required><br>
+
+    <button type="submit">{{ action }}</button>
+</form>
+
+<a href="{{ url_for('My_shop.shop') }}">⬅ Quay lại cửa hàng</a>
+{% endblock %}

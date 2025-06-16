@@ -1,0 +1,27 @@
+<!-- templates/product_detail.html -->
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} | E-COFFEE{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/product_detail.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="product_detail_container">
+    <div class="product_image">
+        <img src="{{ url_for('static', filename='img_product/' + product.image) }}" alt="{{ product.name }}">
+    </div>
+    <div class="product_info">
+        <h1>{{ product.name }}</h1>
+        <p class="price">{{ "{:,.0f}".format(product.price)|replace(",", ".") }} VNĐ</p>
+        <p class="description">{{ product.description }}</p>
+
+        <form method="post" action="{{ url_for('My_cart.add_to_cart', product_id=product.id) }}">
+            <button type="submit">Thêm vào giỏ hàng</button>
+        </form>
+
+        <a class="back-link" href="{{ url_for('My_shop.shop') }}">⬅ Quay lại cửa hàng</a>
+    </div>
+</div>
+{% endblock %}

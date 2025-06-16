@@ -1,0 +1,29 @@
+<!-- templates/about.html -->
+{% extends 'base.html' %}
+
+{% block title %}Giới thiệu | E-COFFEE{% endblock %}
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+{% endblock %}
+
+{% block content %}
+<section>
+    <video autoplay muted loop>
+    <source src="{{ url_for('static', filename='video/intro.mp4') }}" type="video/mp4">
+    Trình duyệt của bạn không hỗ trợ thẻ video.
+    </video>
+    <div>
+        <p>
+            Trung Nguyên E-Coffee là chuỗi cửa hàng bán lẻ thế giới cà phê của Tập đoàn Trung Nguyên Legend – nơi hội tụ tinh hoa của 3 nền văn minh cà phê: 
+            Ottoman – Roman – Thiền được ra mắt từ tháng 8/2019. Ngay từ khi ra đời, Trung Nguyên E-Coffee nhanh chóng tạo nên một làn sóng bùng nổ nhượng 
+            quyền mạnh mẽ, trở thành sự lựa chọn số 1 của hơn 1.000 Đối Tác và hiện diện trên toàn quốc. Trung Nguyên E-Coffee được xem là một giải pháp tối 
+            ưu cho cộng đồng kinh doanh, khởi nghiệp với cà phê, thích hợp cho nhiều đối tượng, nhiều diện tích kinh doanh.</p>
+        <p>
+            Không chỉ sở hữu thiết kế linh hoạt cho mọi địa điểm, Trung Nguyên E-Coffee còn có chính sách hợp tác tối đa lợi ích nhất cho tất cả các 
+            Đối Tác từ chính sách gói hợp tác đến các chương trình hỗ trợ đào tạo, tư vấn, vận hành… Hơn nữa, với hệ sản phẩm đặc biệt gồm hơn 100 
+            sản phẩm cà phê năng lượng tuyệt ngon – sách quý đổi đời – bánh mì thực dưỡng, Trung Nguyên E-Coffee tạo nên một thế giới cà phê thu nhỏ, 
+            đáp ứng cho những người yêu cà phê có thể trải nghiệm đầy đủ các gói sản phẩm thưởng lãm tại nhà, văn phòng, hàng quán…
+        </p>
+    </div>
+</section>
+{% endblock %}

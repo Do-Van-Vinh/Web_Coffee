@@ -1,0 +1,67 @@
+<!-- templates/cart.html -->
+{% extends 'base.html' %}
+{% block title %}Giỏ hàng | E-COFFEE{% endblock %}
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="cart-page">
+    <div class="cart-items">
+        <h2>Sản phẩm trong giỏ hàng</h2>
+        {% if cart %}
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tạm tính</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pid, item in cart.items() %}
+                        <tr>
+                            <td><img src="{{ url_for('static', filename='img_product/' ~ item.image) }}" alt="{{ item.name }}"></td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.price }}₫</td>
+                            <td class="qty-controls">
+                                <form method="post" action="{{ url_for('My_cart.update_cart_quantity', product_id=pid) }}">
+                                    <input type="hidden" name="action" value="decrease">
+                                    <button>-</button>
+                                </form>
+                                {{ item.quantity }}
+                                <form method="post" action="{{ url_for('My_cart.update_cart_quantity', product_id=pid) }}">
+                                    <input type="hidden" name="action" value="increase">
+                                    <button>+</button>
+                                </form>
+                            </td>
+                            <td>{{ item.price * item.quantity }}₫</td>
+                            <td>
+                                <form class="recycle" method="post" action="{{ url_for('My_cart.remove_from_cart', product_id=pid) }}">
+                                    <button><img src="{{ url_for('static', filename='images/recycle-bin.png') }}" alt="Xoá"></button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="cart-empty">Giỏ hàng đang trống.</p>
+        {% endif %}
+        <a href="{{ url_for('My_shop.shop') }}" class="back-shop">⬅ Tiếp tục xem sản phẩm</a>
+    </div>
+
+    <div class="cart-summary">
+        <h3>CỘNG GIỎ HÀNG</h3>
+        <p>Tạm tính: <strong>{{ total_price }}₫</strong></p>
+        <p>Giao hàng: Vận chuyển đến Hồ Chí Minh</p>
+        <p>Miễn phí vận chuyển</p>
+        <hr>
+        <p><strong>Tổng: {{ total_price }}₫</strong></p>
+        <button class="checkout-btn">Tiến hành thanh toán</button>
+    </div>
+</div>
+{% endblock %}

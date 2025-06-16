@@ -1,0 +1,60 @@
+section{
+    height: 90vh;
+}
+
+.slider{
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+figure{
+    position: relative;
+    left: 0;
+    width: 300%;
+    animation: 10s slide infinite;
+}
+
+.slide{
+    position: relative;
+    width: 33.33%;
+    float: left;
+}
+
+.slide img{
+    width: 100%;
+    height: 500px;
+}
+
+@keyframes slide{
+    0%{
+        left: 0;
+    }
+    11%{
+        left: 0;
+    }
+    22%{
+        left: -100%;
+    }
+    33%{
+        left: -100%;
+    }
+    44%{
+        left: -200%;
+    }
+    55%{
+        left: -200%;
+    }
+    66%{
+        left: -100%;
+    }
+    77%{
+        left: -100%;
+    }
+    88%{
+        left: -0%;
+    }
+    100%{
+        left: -0%
+    }
+}

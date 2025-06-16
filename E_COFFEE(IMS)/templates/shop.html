@@ -1,0 +1,70 @@
+<!-- templates/shop.html -->
+{% extends 'base.html' %}
+
+{% block title %}Cửa hàng | E-COFFEE{% endblock %}
+{% block head_extra %}<link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">{% endblock %}
+
+{% block content %}
+<section class="shop">
+    <div class="left_shop">
+        <!-- Bộ lọc -->
+        <form method="GET" action="{{ url_for('My_shop.shop') }}">
+            <div class="filterbar">
+                <p>Phân loại sản phẩm:</p>
+                <label>
+                    <input type="radio" name="category" value="" {% if not request.args.get('category') %}checked{% endif %}>
+                    Tất cả
+                </label>
+                {% for t in categories %}
+                    <label>
+                        <input type="radio" name="category" value="{{ t.id }}" {% if request.args.get('category') == (t.id|string) %}checked{% endif %}>
+                        {{ t.name.capitalize() }}
+                    </label>
+                {% endfor %}
+                <button type="submit">Lọc</button>
+            </div>
+        </form>
+
+        {% if role == 'admin' %}
+        <a href="{{ url_for('My_shop.add_product') }}">Thêm sản phẩm</a>
+        {% endif %}
+    </div>
+
+    <div class="right_shop">
+        <!-- Thanh tìm kiếm -->
+        <div class="searchbar">
+            <form method="get">
+                <input type="text" name="search" placeholder="Tìm kiếm sản phẩm..." value="{{ request.args.get('search', '') }}">
+                <button type="submit">Tìm</button>
+            </form>
+        </div>
+        <div class="product_list">
+            {% for product in products %}
+                <div class="product_card">
+                    <a href="{{ url_for('My_shop.product_detail', product_id=product.id) }}">
+                    
+                        <!-- Nếu có hình ảnh -->
+                        <img class="img_product" src="{{ url_for('static', filename='img_product/' + product.image) }}" alt="{{ product.name }}">
+
+                        <h3>{{ product.name }}</h3>
+                    </a>
+
+                    <form class="cart-btn" method="post" action="{{ url_for('My_cart.add_to_cart', product_id=product.id) }}">
+                        <button type="submit"><img src="{{ url_for('static', filename='images/add-cart.png') }}" alt="Thêm vào giỏ"></button>
+                        <p>{{ "{:,.0f}".format(product.price)|replace(",", ".") }} VNĐ</p>
+                    </form>
+                    
+                    <div class="product_edit">
+                    {% if role == 'admin' %}
+                        <a href="{{ url_for('My_shop.edit_product', product_id=product.id) }}" class="edit">Sửa</a>
+                        <form class="delete" method="post" action="{{ url_for('My_shop.delete_product', product_id=product.id) }}" style="display:inline;">
+                            <button type="submit">Xoá</button>
+                        </form>
+                    {% endif %}                        
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

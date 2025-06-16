@@ -1,0 +1,69 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}E-COFFEE{% endblock %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="{{ url_for('index')}}"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="E-COFFEE"></a>
+        </div>
+        <nav>
+            <a href="{{ url_for('index')}}">Trang chủ</a>
+            <a href="{{ url_for('about')}}">Giới thiệu</a>
+            <a href="{{ url_for('My_shop.shop') }}">Sản phẩm</a>
+            <a href="{{ url_for('franchise')}}">Nhượng quyền</a>
+            <a href="{{ url_for('My_cart.cart') }}"><img src="{{ url_for('static', filename='images/cart.png') }}" alt="Giỏ hàng"></a>
+            {% if session.user %}
+            <a href="{{ url_for('My_auth.logout') }}"><img src="{{ url_for('static', filename='images/logout.png') }}" alt="Đăng xuất"></a>
+            {% else %}
+            <a href="{{ url_for('My_auth.login') }}"><img src="{{ url_for('static', filename='images/user.png') }}" alt="Đăng nhập"></a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        <!-- Nội dung sẽ được chèn từ các template con -->
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>|CÔNG TY CỔ PHẦN TRUNG NGUYÊN FRANCHISING</h3>
+                <p>87A Cách Mạng Tháng 8, Phường Bến Thành, Quận 1, Hồ Chí Minh</p>
+                <p>Hotline: 0915 493 322</p>
+                <p>Liên hệ hợp tác Nhượng Quyền E-Coffee:</p>
+                <p>Hotline1: 088 673 1188</p>
+                <p>Hotline2: 081 673 1188</p>
+                <p>GPKD: 0310939343</p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>|Về E-COFFEE</h3>
+                <ul>
+                    <li><a href="{{ url_for('index')}}">Trang chủ</a></li>
+                    <li><a href="{{ url_for('about')}}">Giới thiệu</a></li>
+                    <li><a href="{{ url_for('My_shop.shop') }}">Sản phẩm</a></li>
+                    <li><a href="{{ url_for('franchise')}}">Nhượng quyền</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-hours">
+                <h3>|Giờ mở cửa</h3>
+                <ul>
+                    <p>Thứ 2 - Thứ 6: 7:00 AM - 8:00 PM</p>
+                    <p>Thứ 7 - Chủ nhật: 8:00 AM - 9:00 PM</p>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>Copyright 2020 &copy;</p>
+            <strong><a>Trung Nguyên E-Coffee</a></strong>
+        </div>
+    </footer>
+</body>
+</html>

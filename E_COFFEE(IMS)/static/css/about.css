@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+section video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+section div p {
+    display: flex;
+    text-align: justify;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: black;
+    font-weight: 500;
+    padding: 20px 120px;
+}

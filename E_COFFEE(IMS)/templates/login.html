@@ -1,0 +1,36 @@
+<!-- templates/login.html -->
+{% extends 'base.html' %}
+
+{% block title %}Đăng nhập{% endblock %}
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>Đăng nhập</h2>
+    <form method="POST">
+        <label for="username">Tên đăng nhập:</label><br>
+        <input type="text" id="username" name="username" required><br>
+
+        <label for="password">Mật khẩu:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Đăng nhập</button>
+
+        <a href="{{ url_for('My_auth.register') }}">Đăng ký</a>
+
+    </form>
+
+    <!-- Hiển thị thông báo flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</div>
+{% endblock %}
