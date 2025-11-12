@@ -6,7 +6,7 @@ from routes import all_routes
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secret_key_demo"  # Cần thiết cho đăng nhập
 
-db = MySQL_connect()
+#db = MySQL_connect()
 
 all_routes(app)
 
@@ -21,4 +21,5 @@ def franchise():
     return render_template('franchise.html')
 
 if __name__ == '__main__':
+
     app.run(debug=True)
